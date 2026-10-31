@@ -1,0 +1,106 @@
+{
+  "stamp": "20261031-053201",
+  "pack_pass": false,
+  "results": {
+    "RT-01": {
+      "breaches": 0,
+      "scanned": 167,
+      "pass": true
+    },
+    "RT-02": {
+      "breaches": 0,
+      "scanned": 167,
+      "pass": true
+    },
+    "RT-03": {
+      "breaches": 0,
+      "scanned": 1,
+      "note_ok": true,
+      "pass": true
+    },
+    "RT-04": {
+      "breaches": 0,
+      "scanned": 167,
+      "pass": true
+    },
+    "RT-05": {
+      "breaches": 0,
+      "scanned": 334,
+      "pass": true
+    },
+    "RT-06": {
+      "breaches": 0,
+      "scanned": 23,
+      "probe_h": "2025-08-15",
+      "probe_t": "2026-03-02",
+      "pass": true
+    },
+    "RT-07.0": {
+      "breaches": 368,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.1": {
+      "breaches": 286,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.2": {
+      "breaches": 62080,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.3": {
+      "breaches": 61373,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.4": {
+      "breaches": 0,
+      "scanned": 286,
+      "pass": true
+    },
+    "RT-07.5": {
+      "breaches": 0,
+      "scanned": 287,
+      "pass": true
+    },
+    "RT-07.6": {
+      "breaches": 0,
+      "scanned": 1,
+      "pass": true
+    },
+    "RT-07.7": {
+      "breaches": 15,
+      "scanned": 15,
+      "pass": false
+    },
+    "RT-07": {
+      "pass": false,
+      "breaches": 124122,
+      "failed_children": [
+        "RT-07.0",
+        "RT-07.1",
+        "RT-07.2",
+        "RT-07.3",
+        "RT-07.7"
+      ]
+    }
+  },
+  "error_counts": {
+    "RT-01": 0,
+    "RT-02": 0,
+    "RT-03": 0,
+    "RT-04": 0,
+    "RT-05": 0,
+    "RT-06": 0,
+    "RT-07.0": 368,
+    "RT-07.1": 286,
+    "RT-07.2": 62080,
+    "RT-07.3": 61373,
+    "RT-07.4": 0,
+    "RT-07.5": 0,
+    "RT-07.6": 0,
+    "RT-07.7": 15
+  }
+}

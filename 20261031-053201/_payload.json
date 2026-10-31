@@ -1,0 +1,554 @@
+{
+  "stamp": "20261031-053201",
+  "pack_pass": false,
+  "results": {
+    "RT-01": {
+      "breaches": 0,
+      "scanned": 167,
+      "pass": true
+    },
+    "RT-02": {
+      "breaches": 0,
+      "scanned": 167,
+      "pass": true
+    },
+    "RT-03": {
+      "breaches": 0,
+      "scanned": 1,
+      "note_ok": true,
+      "pass": true
+    },
+    "RT-04": {
+      "breaches": 0,
+      "scanned": 167,
+      "pass": true
+    },
+    "RT-05": {
+      "breaches": 0,
+      "scanned": 334,
+      "pass": true
+    },
+    "RT-06": {
+      "breaches": 0,
+      "scanned": 23,
+      "rows": [
+        {
+          "Rule": "function probe",
+          "Date": "2025-08-15",
+          "Holiday": "Y",
+          "Action / Notes": "NSE holiday (frozen calendar)",
+          "Output": "No pack file written.",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "function probe",
+          "Date": "2026-03-02",
+          "Holiday": "N",
+          "Action / Notes": "NSE Trading day - proceed",
+          "Output": "No pack file written.",
+          "Skip": "N",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-08-15",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-08-27",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-10-02",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-10-21",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-10-22",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-11-05",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2025-12-25",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-01-15",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-01-26",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-02-15",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-03-03",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-03-21",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-03-26",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-03-31",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-04-03",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-04-14",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-05-01",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-05-28",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-06-26",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-08-15",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        },
+        {
+          "Rule": "holiday folder on disk",
+          "Date": "2026-09-14",
+          "Holiday": "Y",
+          "Action / Notes": "No pack folder",
+          "Output": "absent",
+          "Skip": "Y",
+          "bad": false
+        }
+      ],
+      "probe_h": "2025-08-15",
+      "probe_t": "2026-03-02",
+      "pass": true
+    },
+    "RT-07.0": {
+      "breaches": 82,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.1": {
+      "breaches": 0,
+      "scanned": 286,
+      "pass": true
+    },
+    "RT-07.2": {
+      "breaches": 62080,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.3": {
+      "breaches": 61373,
+      "scanned": 286,
+      "pass": false
+    },
+    "RT-07.4": {
+      "breaches": 0,
+      "scanned": 286,
+      "pass": true
+    },
+    "RT-07.5": {
+      "breaches": 0,
+      "scanned": 287,
+      "pass": true
+    },
+    "RT-07.6": {
+      "breaches": 0,
+      "scanned": 1,
+      "pass": true
+    },
+    "RT-07.7": {
+      "breaches": 0,
+      "scanned": 15,
+      "pass": true
+    },
+    "RT-07": {
+      "breaches": 123535,
+      "scanned": 1733,
+      "pass": false
+    }
+  },
+  "fs_rows": [
+    {
+      "sno": 1,
+      "label": "RT-07.2",
+      "reason": "History depth is not SCOUTING_HISTORY_TDAYS.",
+      "count": 62039
+    },
+    {
+      "sno": 2,
+      "label": "RT-07.3",
+      "reason": "History depth is not SCOUTING_HISTORY_TDAYS.",
+      "count": 61332
+    },
+    {
+      "sno": 3,
+      "label": "RT-07.0",
+      "reason": "Required NSE session file is absent",
+      "count": 82
+    },
+    {
+      "sno": 4,
+      "label": "RT-07.2",
+      "reason": "Required NSE session file is absent",
+      "count": 41
+    },
+    {
+      "sno": 5,
+      "label": "RT-07.3",
+      "reason": "Required NSE session file is absent",
+      "count": 41
+    }
+  ],
+  "rt06_rows": [
+    {
+      "Rule": "function probe",
+      "Date": "2025-08-15",
+      "Holiday": "Y",
+      "Action / Notes": "NSE holiday (frozen calendar)",
+      "Output": "No pack file written.",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "function probe",
+      "Date": "2026-03-02",
+      "Holiday": "N",
+      "Action / Notes": "NSE Trading day - proceed",
+      "Output": "No pack file written.",
+      "Skip": "N",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-08-15",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-08-27",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-10-02",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-10-21",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-10-22",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-11-05",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2025-12-25",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-01-15",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-01-26",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-02-15",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-03-03",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-03-21",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-03-26",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-03-31",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-04-03",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-04-14",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-05-01",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-05-28",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-06-26",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-08-15",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    },
+    {
+      "Rule": "holiday folder on disk",
+      "Date": "2026-09-14",
+      "Holiday": "Y",
+      "Action / Notes": "No pack folder",
+      "Output": "absent",
+      "Skip": "Y",
+      "bad": false
+    }
+  ],
+  "why": {
+    "RT-01": "Passed. All 167 entry trade fills sit inside that day's futures high and low. None were outside.",
+    "RT-02": "Passed. All 167 trade exit prices sit inside that day's futures high and low. None were outside.",
+    "RT-03": "Passed because the named leave, reopen, and hard-stop skip lists are off and empty, and executable scout, backtest, exit, and execution code loads no seat list into a fill.",
+    "RT-04": "Passed. No filled trade exits after that trade's own futures expiry.",
+    "RT-05": "Passed. No entry date and no exit date falls on an NSE holiday or a weekend.",
+    "RT-06": "Passed. The holiday skip returned skip, the trading day returned proceed, and no frozen holiday inside the window has a pack folder.",
+    "RT-07.0": "Failed. 82 required files or folders are missing.",
+    "RT-07.1": "Passed. Each required indices workbook has three sheets, the history depth, and a last date equal to the folder date.",
+    "RT-07.2": "Failed. 62080 spot sheets do not match the folder date or the depth.",
+    "RT-07.3": "Failed. 61373 delivery sheets do not match the folder date or the depth.",
+    "RT-07.4": "Passed. Every futures file in the window was opened; traded dates match; mid-month near month is strictly after the folder date; expiry evenings hold Note 1 Case 1 / 1b / 1c pack rows.",
+    "RT-07.5": "Passed. Every earnings file in the window was opened, each symbol and result date appears once, and the scout and the backtest open that scout date\u2019s file.",
+    "RT-07.6": "Passed. Holidays inside Date 1 through Date 2 are in the frozen file, and the program does not write that file.",
+    "RT-07.7": "Passed. Each month from Date 1 through Date 2 has one trading-day expiry, and the program does not write the frozen file.",
+    "RT-07": "Failed. 3 RT-07 children failed."
+  },
+  "holiday_asof": "2026-10-20",
+  "run_at": "2026-10-31 09:47",
+  "sessions": 286
+}

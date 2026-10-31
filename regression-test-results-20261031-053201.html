@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Regression Results — FAILED — 20261031-053201</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Exo+2:wght@500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg:#f2f0e9; --ink:#111; --muted:#555; --card:#fff;
+  --lime:#c8ff3d; --coral:#ff5a36; --cyan:#2de2e6; --sun:#ffd23f; --pink:#ff9ecd;
+  --hard:3px solid var(--ink); --shadow:5px 5px 0 var(--ink); --shadow-lg:8px 8px 0 var(--ink);
+  --radius:18px;
+  --font:"DM Sans",system-ui,sans-serif;
+  --display:"Syne","DM Sans",sans-serif;
+  --nameplate:"Exo 2","DM Sans",sans-serif;
+  --pad-x:clamp(14px,3.5vw,28px); --max:calc(100vw - 16px);
+  --pass:#c8ff3d; --fail:#ff5a36; --blocked:#ffd23f; --notrun:#e5e7eb;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0; font-family:var(--font); color:var(--ink); line-height:1.45; min-height:100vh;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(ellipse 80% 50% at 0% 0%, rgba(200,255,61,.42), transparent 55%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, rgba(45,226,230,.32), transparent 50%),
+    radial-gradient(ellipse 70% 45% at 85% 100%, rgba(255,90,54,.18), transparent 55%),
+    repeating-linear-gradient(0deg,transparent,transparent 26px,rgba(17,17,17,.03) 26px,rgba(17,17,17,.03) 27px);
+}
+.noise{
+  pointer-events:none; position:fixed; inset:0; opacity:.035; z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{position:relative;z-index:1;width:min(100%,var(--max));margin:0 auto;padding:clamp(16px,3vw,32px) var(--pad-x) clamp(48px,8vw,80px)}
+.jump{
+  position:sticky; top:0; z-index:20; display:flex; gap:8px; flex-wrap:wrap;
+  padding:10px 0 12px; margin:0 0 8px;
+  background:linear-gradient(180deg, rgba(242,240,233,.96) 60%, transparent);
+  backdrop-filter:blur(6px);
+}
+a.jchip{
+  text-decoration:underline; text-underline-offset:3px; text-decoration-thickness:2px;
+  text-decoration-color:var(--cyan); color:var(--ink); font-size:12px; font-weight:700;
+  letter-spacing:.03em; border:2px solid var(--ink); border-radius:999px;
+  padding:5px 10px; background:#fff; min-height:0; display:inline-flex; align-items:center;
+  gap:6px; cursor:pointer; box-shadow:2px 2px 0 var(--ink);
+  transition:transform .12s ease, background .12s, box-shadow .12s;
+}
+a.jchip::after{content:none}
+a.jchip:hover{
+  transform:translate(-1px,-1px); background:var(--gc);
+  box-shadow:3px 3px 0 var(--ink); text-decoration-color:var(--ink);
+}
+a.jchip.pass .n{background:#16a34a; color:#fff}
+a.jchip.fail .n{background:#dc2626; color:#fff}
+a.jchip:focus-visible{outline:3px solid var(--coral); outline-offset:2px}
+a.jchip .n{
+  font-family:var(--nameplate); color:var(--ink); background:var(--cyan);
+  border:2px solid var(--ink); border-radius:999px; padding:2px 8px;
+  text-decoration:none; flex:0 0 auto;
+}
+header.hero{
+  border:var(--hard); border-radius:clamp(20px,4vw,30px); background:var(--card);
+  box-shadow:var(--shadow-lg); padding:clamp(16px,3vw,26px); margin-bottom:clamp(16px,3vw,24px);
+  position:relative; overflow:hidden; animation:pop-in .55s cubic-bezier(.2,1.2,.3,1) both;
+}
+header.hero::after{
+  content:""; position:absolute; right:-40px; top:-40px; width:160px; height:160px;
+  border-radius:50%; background:var(--lime); opacity:.55; border:3px solid var(--ink);
+}
+header.hero>*{position:relative;z-index:1}
+.kicker{
+  display:inline-flex; align-items:center; gap:8px; font-size:11px; font-weight:700;
+  letter-spacing:.06em; text-transform:uppercase; background:var(--sun);
+  border:2px solid var(--ink); border-radius:999px; padding:7px 12px; margin-bottom:12px;
+}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--coral);animation:blink 1.2s infinite}
+h1{
+  margin:0 0 10px; font-family:var(--display); font-size:clamp(1.7rem,6.5vw,3.1rem);
+  line-height:.96; letter-spacing:-.04em; font-weight:800; text-transform:uppercase; width:100%;
+}
+h1 .verdict{display:inline}
+h1 .verdict.go{color:#16a34a}
+h1 .verdict.stop{color:#dc2626}
+.src{font-size:.85rem; font-weight:600}
+.src a{color:#0b57d0; background:none; border:none; padding:0; text-decoration:underline; text-underline-offset:2px}
+.src a.fs{color:#dc2626; font-weight:800}
+#regression-scope,
+#regression-prereq,
+#failure-summary-dialog{
+  border:3px solid var(--ink); border-radius:18px; padding:0; max-width:760px; width:calc(100% - 32px);
+  box-shadow:8px 8px 0 var(--ink); background:#fff;
+}
+#regression-prereq{max-width:980px}
+#regression-scope:not([open]),
+#failure-summary-dialog:not([open]){display:none !important}
+#regression-scope[open],
+#failure-summary-dialog[open]{display:flex !important; flex-direction:column}
+#regression-scope,
+#failure-summary-dialog{
+  width:calc(100vw - 12px); max-width:none;
+  height:calc(100vh - 12px); max-height:calc(100vh - 12px);
+  margin:6px auto; overflow:hidden;
+}
+#regression-scope .pop-h,
+#failure-summary-dialog .pop-h{padding:8px 14px; flex:0 0 auto}
+#regression-scope .pop-b,
+#failure-summary-dialog .pop-b{
+  flex:1 1 auto; min-height:0;
+  overflow:auto; overscroll-behavior:contain;
+  padding:8px 12px 16px;
+}
+#regression-scope th,
+#regression-scope td,
+#regression-scope li{white-space:nowrap}
+#regression-scope .pop-b p{white-space:normal}
+#regression-scope table.rt,
+#failure-summary-dialog table.rt{width:100%; overflow:visible; font-size:14px}
+#regression-scope th,
+#regression-scope td{padding:2px 10px}
+#regression-scope td li{margin:0; line-height:1.2; font-size:14px}
+#regression-scope::backdrop,
+#regression-prereq::backdrop,
+#failure-summary-dialog::backdrop{background:rgba(17,17,17,.45)}
+#regression-scope .pop-h,
+#regression-prereq .pop-h,
+#failure-summary-dialog .pop-h{
+  display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:14px 16px; border-bottom:3px solid var(--ink); background:var(--lime);
+}
+#failure-summary-dialog .pop-h{background:#fecaca}
+#regression-scope h2,
+#regression-prereq h2,
+#failure-summary-dialog h2{margin:0; font-family:var(--nameplate); font-size:1.1rem; text-transform:uppercase; letter-spacing:.04em}
+#regression-scope .x,
+#regression-prereq .x,
+#failure-summary-dialog .x{
+  border:2px solid var(--ink); background:#fff; border-radius:999px; font-weight:800; padding:6px 12px; cursor:pointer;
+}
+#regression-scope .pop-b,
+#regression-prereq .pop-b,
+#failure-summary-dialog .pop-b{padding:14px 16px 18px}
+#regression-prereq .pop-b ul{margin:0; padding-left:1.15em}
+#regression-prereq .pop-b li{margin:8px 0; font-size:.95rem; line-height:1.45}
+#failure-summary-dialog .card{border:none; box-shadow:none; max-height:none; margin:0}
+#regression-scope .pop-b p{margin:0 0 8px; font-size:14px; line-height:1.2}
+#regression-scope td ul{margin:0; padding-left:1.15em}
+#regression-scope td li{margin:0; line-height:1.2; font-size:14px}
+.meta-row{display:flex;flex-wrap:nowrap;gap:12px;margin-top:12px;align-items:center;justify-content:space-between}
+.meta-row .src{flex:1 1 auto; text-align:center; white-space:nowrap}
+.meta-pills{display:flex;flex-wrap:nowrap;gap:8px;align-items:center;flex:0 0 auto}
+.pill{
+  font-size:11px; font-weight:700; border:2px solid var(--ink); border-radius:999px;
+  padding:7px 12px; background:var(--bg);
+}
+.pill.go{background:#16a34a; color:#fff}
+.pill.stop{background:#dc2626; color:#fff}
+.tl{
+  position:static; z-index:2; flex:0 0 auto;
+  display:flex; flex-direction:row; align-items:center; gap:6px;
+  background:#111; border:3px solid var(--ink); border-radius:18px;
+  padding:5px 8px;
+}
+.tl i{width:18px; height:18px; border-radius:50%; background:#3f3f3f; display:block}
+.tl.go i:nth-child(3){background:#4ade80; box-shadow:0 0 12px #4ade80}
+.tl.stop i:nth-child(1){background:#f87171; box-shadow:0 0 12px #f87171}
+.pill.sun{background:var(--sun)}
+.pill.lime{background:var(--lime)}
+.pill.cyan{background:var(--cyan)}
+#top-menu{margin-top:8px}
+#top-menu .label{
+  font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; font-weight:800;
+  color:var(--muted); margin:14px 0 8px; font-family:var(--nameplate);
+}
+.goals{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:10px; margin:14px 0 4px;
+}
+.goal{
+  display:flex; align-items:center; gap:8px;
+  border:2px solid var(--ink); border-radius:14px; padding:8px 10px; background:#fff;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.goal b{
+  display:inline-block; flex:0 0 auto; margin:0;
+  font-family:var(--nameplate); font-size:11px; letter-spacing:.06em;
+  text-transform:uppercase; background:var(--ink); color:var(--lime); border-radius:999px; padding:3px 8px;
+}
+a.goal{color:inherit; text-decoration:none; cursor:pointer}
+a.goal:hover{transform:translate(-1px,-1px); box-shadow:3px 3px 0 var(--ink)}
+a.goal span{flex:1; min-width:0; white-space:nowrap; font-size:.88rem; font-weight:600; color:#0b57d0; text-decoration:underline; text-underline-offset:2px}
+a.goal:hover span{color:#0842a0}
+a.goal .lamp{
+  display:block; flex:0 0 auto; width:16px; height:16px; margin-left:8px;
+  border-radius:50%; border:2px solid var(--ink);
+}
+a.goal .lamp.go{background:#16a34a; box-shadow:0 0 8px #16a34a}
+a.goal .lamp.stop{background:#dc2626; box-shadow:0 0 8px #dc2626}
+.group{scroll-margin-top:72px; margin:0 0 18px; animation:rise .5s ease both}
+.group-h{
+  display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;
+  background:color-mix(in srgb, var(--gc) 55%, #fff);
+  border:var(--hard); border-radius:16px; padding:8px 12px; box-shadow:var(--shadow);
+}
+.group-h h2{
+  margin:0; font-family:var(--nameplate); font-size:clamp(1rem,3.2vw,1.35rem);
+  text-transform:uppercase; letter-spacing:.04em; font-weight:800;
+}
+.group-h .gn{background:var(--ink); color:var(--lime); border-radius:999px; padding:2px 10px; font-size:.85em}
+.badge{
+  display:inline-block; margin-top:6px; font-size:10px; font-weight:800; letter-spacing:.06em;
+  text-transform:uppercase; border:2px solid var(--ink); background:#fff; padding:4px 10px; border-radius:999px;
+}
+.badge.pass{background:var(--pass)}
+.badge.fail{background:var(--fail); color:#fff}
+.badge.sample{background:var(--sun)}
+a.top{
+  color:var(--ink); text-decoration:none; font-size:12px; font-weight:800; white-space:nowrap;
+  border:2px solid var(--ink); background:var(--lime); border-radius:999px; padding:8px 12px;
+  box-shadow:2px 2px 0 var(--ink);
+}
+.stack{display:flex; flex-direction:column; gap:12px; margin-top:12px}
+.card{
+  background:var(--card); border:var(--hard); border-radius:var(--radius);
+  padding:10px 12px 8px; box-shadow:var(--shadow); animation:pop-in .45s cubic-bezier(.2,1.2,.3,1) both;
+  overflow:auto; max-height:72vh;
+}
+.card-meta{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:8px}
+.ref{
+  font-family:var(--nameplate); font-weight:800; font-size:.78rem; letter-spacing:.04em;
+  background:var(--ink); color:var(--lime); border-radius:999px; padding:6px 10px;
+}
+.dept{
+  font-size:11px; font-weight:700; border:2px solid var(--ink); border-radius:999px;
+  padding:6px 10px; background:var(--bg);
+}
+.card h3{
+  margin:0 0 10px; font-family:var(--display); font-size:clamp(1.05rem,3.2vw,1.35rem);
+  letter-spacing:-.02em; line-height:1.15; text-transform:uppercase;
+}
+.facts{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 12px}
+.fact{
+  border:2px solid var(--ink); border-radius:12px; padding:4px 8px; background:#fff8d6; min-width:120px;
+}
+.fact b{display:block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.fact span{font-weight:700; font-size:.92rem}
+.fact.testing{flex:1 1 100%}
+.fact.testing span{color:#dc2626; font-size:.78rem; font-weight:600; line-height:1.35}
+.lbl{
+  font-family:var(--nameplate); font-size:10px; font-weight:800; letter-spacing:.1em;
+  text-transform:uppercase; color:var(--muted); margin:4px 0 6px;
+}
+.note{
+  border:var(--hard); border-style:dashed; padding:12px 14px; border-radius:14px;
+  background:#fff; box-shadow:var(--shadow); margin:12px 0 0;
+}
+.note strong{background:var(--sun); border:2px solid var(--ink); border-radius:8px; padding:1px 6px}
+table.rt{
+  width:max-content; min-width:100%; border-collapse:separate; border-spacing:0; margin:0 0 4px;
+  border:2px solid var(--ink); border-radius:14px; background:#fff;
+  font-size:14px;
+}
+table.rt th, table.rt td{
+  border-bottom:2px solid var(--ink); border-right:2px solid rgba(17,17,17,.12);
+  padding:8px 12px; text-align:left; vertical-align:middle; white-space:nowrap;
+}
+table.rt th:last-child, table.rt td:last-child{border-right:none}
+table.rt tr:last-child td{border-bottom:none}
+table.rt th{
+  background:var(--ink); color:var(--lime); font-family:var(--nameplate);
+  font-size:11px; letter-spacing:.06em; text-transform:uppercase; font-weight:800;
+}
+table.rt td.mono{font-family:ui-monospace,Consolas,monospace; font-weight:700; white-space:nowrap}
+table.rt tr.bad td{background:#fee2e2}
+#failure-summary .card,
+#failure-summary-dialog .card{overflow:visible;max-height:none}
+#failure-summary td.why,
+#failure-summary-dialog td.why{position:relative;cursor:help}
+#failure-summary td.why .label,
+#failure-summary-dialog td.why .label{border-bottom:1px dotted #44403c}
+#failure-summary td.why .tip,
+#failure-summary-dialog td.why .tip{
+  display:none;position:absolute;left:0;top:calc(100% + 8px);z-index:30;width:min(380px,72vw);
+  white-space:normal;background:#1c1917;color:#fafaf9;padding:10px 12px;border-radius:10px;
+  font-size:13px;font-weight:500;line-height:1.45;box-shadow:0 10px 28px rgba(0,0,0,.28)
+}
+#failure-summary td.why:hover .tip,#failure-summary td.why:focus-within .tip,
+#failure-summary-dialog td.why:hover .tip,#failure-summary-dialog td.why:focus-within .tip{display:block}
+.mark{
+  display:inline-block; font-weight:800; font-size:11px; letter-spacing:.04em; text-transform:uppercase;
+  border:2px solid var(--ink); border-radius:999px; padding:3px 8px;
+}
+.mark.pass{background:var(--pass)}
+.mark.fail{background:var(--fail); color:#fff}
+.mark.blocked{background:var(--blocked)}
+.mark.notrun{background:var(--notrun)}
+.mark.sample{background:var(--pink)}
+.pri{
+  display:inline-block; font-weight:800; font-size:10px; letter-spacing:.05em;
+  border:2px solid var(--ink); border-radius:999px; padding:2px 8px;
+}
+.pri.high{background:var(--coral); color:#fff}
+.pri.med{background:var(--sun)}
+.pri.low{background:var(--cyan)}
+footer.page{margin-top:28px; color:var(--muted); font-size:.85rem}
+@keyframes pop-in{from{opacity:0; transform:translateY(10px) scale(.98)} to{opacity:1; transform:none}}
+@keyframes rise{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+@keyframes blink{0%,100%{opacity:1} 50%{opacity:.25}}
+@media (max-width:720px){
+  a.jchip{font-size:11px; padding:7px 10px}
+}
+</style>
+</head>
+<body>
+<div class="noise" aria-hidden="true"></div>
+<div class="wrap">
+<header class="hero" id="top">
+  <h1>Regression Results <span class="verdict stop">FAILED</span></h1>
+  <div class="meta-row">
+    <div class="meta-pills">
+      <span class="pill stop">FAILED</span>
+      <span class="pill sun">Live book at run</span>
+      <span class="pill lime">167 FILLED Trades</span>
+      <span class="pill cyan">v126 · scout v3-3.249</span>
+    </div>
+    <div class="src"><a class="fs" href="#failure-summary-dialog" id="open-fs">Failure Summary</a> · <a href="#regression-prereq" id="open-prereq">Pre-requisite</a> · <a href="#regression-scope" id="open-scope">Regression Scope</a> · Law: <a href="../regression-test.md" target="_blank" rel="noopener noreferrer">ts/regression-test.md</a></div>
+    <div class="tl stop" role="img" aria-label="Overall result FAILED"><i></i><i></i><i></i></div>
+  </div>
+  <div class="lbl" style="margin-top:16px">Goal (G1–G7)</div>
+  <div class="goals">
+<a class="goal" href="#rt-01"><b>G1</b><span>Entry fill ∈ entry-day FUT [Low, High]</span><i class="lamp go" title="PASS"></i></a>
+<a class="goal" href="#rt-02"><b>G2</b><span>Exit fill ∈ exit-day FUT [Low, High]</span><i class="lamp go" title="PASS"></i></a>
+<a class="goal" href="#rt-03"><b>G3</b><span>Live≡BT — no hardcode / seat theatre</span><i class="lamp go" title="PASS"></i></a>
+<a class="goal" href="#rt-04"><b>G4</b><span>No hold past near-month FUT expiry</span><i class="lamp go" title="PASS"></i></a>
+<a class="goal" href="#rt-05"><b>G5</b><span>No exit on NSE holiday</span><i class="lamp go" title="PASS"></i></a>
+<a class="goal" href="#rt-06"><b>G6</b><span>No data-pack download on holiday</span><i class="lamp go" title="PASS"></i></a>
+<a class="goal" href="#rt-07"><b>G7</b><span>Data pack programs - Validations</span><i class="lamp stop" title="FAIL"></i></a>
+
+  </div>
+  <div class="facts" style="margin-top:14px">
+    <div class="fact"><b>Command</b><span>GO REGRESSION</span></div>
+    <div class="fact"><b>Settings file</b><span>v126</span></div>
+    <div class="fact"><b>Book</b><span>167 / ₹87,51,299.69</span></div>
+    <div class="fact"><b>Soft / H-SL</b><span>0 / 0</span></div>
+    <div class="fact"><b>Run datetime</b><span>2026-10-31 09:47</span></div>
+    <div class="fact"><b>Trades file</b><span>data/backtest/IDS_FPS_Backtest_Trades.xlsx</span></div>
+    <div class="fact"><b>Holiday file</b><span>as_of 2026-10-20</span></div>
+  </div>
+</header>
+
+<section class="group" id="summary" style="--gc:#fcd34d">
+  <header class="group-h">
+    <div><h2><span class="gn">00</span> · Summary</h2><span class="badge fail">FAIL</span></div>
+    <a class="top" href="#top">Top ↑</a>
+  </header>
+  <div class="stack">
+    <article class="card">
+      <div class="card-meta"><span class="ref">SUMMARY</span><span class="dept">RT-01 → RT-07</span><span class="mark fail">FAIL</span></div>
+      <h3>Pack scoreboard</h3>
+      <table class="rt"><thead><tr><th>ID</th><th>Bug / case</th><th>Result</th><th>Breaches</th><th>Note</th></tr></thead>
+      <tbody><tr><td class='mono'>RT-01</td><td>Entry Price honesty</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. All 167 entry trade fills sit inside that day&#x27;s futures high and low. None were outside.</td></tr><tr><td class='mono'>RT-02</td><td>Exit Price honesty</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. All 167 trade exit prices sit inside that day&#x27;s futures high and low. None were outside.</td></tr><tr><td class='mono'>RT-03</td><td>Live≡BT hardcoding avoid</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed because the named leave, reopen, and hard-stop skip lists are off and empty, and executable scout, backtest, exit, and execution code loads no seat list into a fill.</td></tr><tr><td class='mono'>RT-04</td><td>No trade beyond FUT expiry</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. No filled trade exits after that trade&#x27;s own futures expiry.</td></tr><tr><td class='mono'>RT-05</td><td>No exit on NSE holiday</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. No entry date and no exit date falls on an NSE holiday or a weekend.</td></tr><tr><td class='mono'>RT-06</td><td>No datapack download on holiday</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. The holiday skip returned skip, the trading day returned proceed, and no frozen holiday inside the window has a pack folder.</td></tr><tr class="bad"><td class='mono'>RT-07</td><td>Data pack programs</td><td><span class="mark fail">FAIL</span></td><td class='mono'>123535</td><td>Failed. 3 RT-07 children failed.</td></tr></tbody></table>
+      <div class="testing-note" style="margin-top:14px;border:2px solid var(--ink);border-radius:12px;padding:12px 14px;background:#fff1f2">
+        <div class="lbl" style="color:#dc2626">Testing Note</div>
+        <p style="margin:6px 0 0;color:#dc2626;font-size:.9rem">This regression did not change any setting. It read the live trades file, the day packs, the shared files, and the RT-07 programs. It did not download or rewrite a pack. There was nothing to put back. No Idle Restore required.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="group" id="rt-01" style="--gc:#bbf7d0">
+  <header class="group-h"><div><h2><span class="gn">G1</span> · Entry Price (R1.2.1)</h2><span class="badge pass">PASS</span></div><a class="top" href="#top">Top ↑</a></header>
+  <div class="stack">
+<article class="card" >
+  <div class="card-meta"><span class="ref">RT-01</span><span class="mark pass">PASS</span></div>
+  <h3>Entry fill ∈ entry-day FUT OHLC</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>167</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. All 167 entry trade fills sit inside that day&#x27;s futures high and low. None were outside.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div>
+</section>
+<section class="group" id="rt-02" style="--gc:#bbf7d0">
+  <header class="group-h"><div><h2><span class="gn">G2</span> · Exit Price (R1.3.1)</h2><span class="badge pass">PASS</span></div><a class="top" href="#top">Top ↑</a></header>
+  <div class="stack">
+<article class="card" >
+  <div class="card-meta"><span class="ref">RT-02</span><span class="mark pass">PASS</span></div>
+  <h3>Exit fill ∈ exit-day FUT OHLC</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>167</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. All 167 trade exit prices sit inside that day&#x27;s futures high and low. None were outside.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div>
+</section>
+<section class="group" id="rt-03" style="--gc:#bbf7d0">
+  <header class="group-h"><div><h2><span class="gn">G3</span> · Live≡BT hardcode</h2><span class="badge pass">PASS</span></div><a class="top" href="#top">Top ↑</a></header>
+  <div class="stack">
+<article class="card" >
+  <div class="card-meta"><span class="ref">RT-03</span><span class="mark pass">PASS</span></div>
+  <h3>Named-seat lists idle</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>1</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed because the named leave, reopen, and hard-stop skip lists are off and empty, and executable scout, backtest, exit, and execution code loads no seat list into a fill.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div>
+</section>
+<section class="group" id="rt-04" style="--gc:#bbf7d0">
+  <header class="group-h"><div><h2><span class="gn">G4</span> · Expiry hold (R2.1)</h2><span class="badge pass">PASS</span></div><a class="top" href="#top">Top ↑</a></header>
+  <div class="stack">
+<article class="card" >
+  <div class="card-meta"><span class="ref">RT-04</span><span class="mark pass">PASS</span></div>
+  <h3>ExitDate ≤ FutExpiry</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>167</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. No filled trade exits after that trade&#x27;s own futures expiry.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div>
+</section>
+<section class="group" id="rt-05" style="--gc:#bbf7d0">
+  <header class="group-h"><div><h2><span class="gn">G5</span> · Holiday exit (R2.2)</h2><span class="badge pass">PASS</span></div><a class="top" href="#top">Top ↑</a></header>
+  <div class="stack">
+<article class="card" >
+  <div class="card-meta"><span class="ref">RT-05</span><span class="mark pass">PASS</span></div>
+  <h3>No entry or exit on holiday or weekend</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>334</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. No entry date and no exit date falls on an NSE holiday or a weekend.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div>
+</section>
+<section class="group" id="rt-06" style="--gc:#bbf7d0">
+  <header class="group-h"><div><h2><span class="gn">G6</span> · Holiday datapack</h2><span class="badge pass">PASS</span></div><a class="top" href="#top">Top ↑</a></header>
+  <div class="stack">
+<article class="card" >
+  <div class="card-meta"><span class="ref">RT-06</span><span class="mark pass">PASS</span></div>
+  <h3>Local skip · no NSE · no holiday folder</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>23</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. The holiday skip returned skip, the trading day returned proceed, and no frozen holiday inside the window has a pack folder.</span></div>
+  </div>
+  <table class='rt'><thead><tr><th>Rule</th><th>Date</th><th>Holiday</th><th>Action / Notes</th><th>Output</th><th>Skip</th></tr></thead><tbody><tr><td>function probe</td><td class='mono'>2025-08-15</td><td class='mono'>Y</td><td>NSE holiday (frozen calendar)</td><td>No pack file written.</td><td class='mono'>Y</td></tr><tr><td>function probe</td><td class='mono'>2026-03-02</td><td class='mono'>N</td><td>NSE Trading day - proceed</td><td>No pack file written.</td><td class='mono'>N</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-08-15</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-08-27</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-10-02</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-10-21</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-10-22</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-11-05</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2025-12-25</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-01-15</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-01-26</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-02-15</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-03-03</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-03-21</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-03-26</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-03-31</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-04-03</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-04-14</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-05-01</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-05-28</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-06-26</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-08-15</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr><tr><td>holiday folder on disk</td><td class='mono'>2026-09-14</td><td class='mono'>Y</td><td>No pack folder</td><td>absent</td><td class='mono'>Y</td></tr></tbody></table>
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div>
+</section>
+
+
+<section class="group" id="rt-07" style="--gc:#fecaca">
+  <header class="group-h">
+    <div><h2><span class="gn">G7</span> · Data pack programs</h2><span class="badge fail">FAIL</span></div>
+    <a class="top" href="#top">Top ↑</a>
+  </header>
+  <div class="stack">
+    <article class="card">
+      <div class="card-meta"><span class="ref">RT-07</span><span class="mark fail">FAIL</span></div>
+      <h3>Data pack programs - Validations</h3>
+      <div class="facts">
+        <div class="fact"><b>Scanned</b><span>8</span></div>
+        <div class="fact"><b>Breaches</b><span>123535</span></div>
+        <div class="fact"><b>Note</b><span>Failed. 3 RT-07 children failed.</span></div>
+      </div>
+      <div class="lbl">RT-07 summary</div>
+      <table class='rt'><thead><tr><th>ID</th><th>Case</th><th>Result</th><th>Breaches</th><th>Note</th></tr></thead><tbody><tr class="bad"><td class='mono'>RT-07.0</td><td>Common validations (Data Pack Programs)</td><td><span class="mark fail">FAIL</span></td><td class='mono'>82</td><td>Failed. 82 required files or folders are missing.</td></tr><tr><td class='mono'>RT-07.1</td><td>NSE indices</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. Each required indices workbook has three sheets, the history depth, and a last date equal to the folder date.</td></tr><tr class="bad"><td class='mono'>RT-07.2</td><td>Spot price</td><td><span class="mark fail">FAIL</span></td><td class='mono'>62080</td><td>Failed. 62080 spot sheets do not match the folder date or the depth.</td></tr><tr class="bad"><td class='mono'>RT-07.3</td><td>Delivery data</td><td><span class="mark fail">FAIL</span></td><td class='mono'>61373</td><td>Failed. 61373 delivery sheets do not match the folder date or the depth.</td></tr><tr><td class='mono'>RT-07.4</td><td>Near-month futures</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. Every futures file in the window was opened; traded dates match; mid-month near month is strictly after the folder date; expiry evenings hold Note 1 Case 1 / 1b / 1c pack rows.</td></tr><tr><td class='mono'>RT-07.5</td><td>Earnings calendar</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. Every earnings file in the window was opened, each symbol and result date appears once, and the scout and the backtest open that scout date’s file.</td></tr><tr><td class='mono'>RT-07.6</td><td>Holidays calendar</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. Holidays inside Date 1 through Date 2 are in the frozen file, and the program does not write that file.</td></tr><tr><td class='mono'>RT-07.7</td><td>Expiry calendar</td><td><span class="mark pass">PASS</span></td><td class='mono'>0</td><td>Passed. Each month from Date 1 through Date 2 has one trading-day expiry, and the program does not write the frozen file.</td></tr></tbody></table>
+    </article>
+
+<article class="card" id="rt-07-0">
+  <div class="card-meta"><span class="ref">RT-07.0</span><span class="mark fail">FAIL</span></div>
+  <h3>RT-07.0 · Common validations (Data Pack Programs)</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>286</span></div>
+    <div class="fact"><b>Breaches</b><span>82</span></div>
+    <div class="fact"><b>Note</b><span>Failed. 82 required files or folders are missing.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600">82 rows are in the separate report. <a href="./20261031-053201/RT-07.0.html" target="_blank">Open RT-07.0</a> · <a href="./20261031-053201/RT-07.0.csv" target="_blank">Excel</a></p>
+</article>
+<article class="card" id="rt-07-1">
+  <div class="card-meta"><span class="ref">RT-07.1</span><span class="mark pass">PASS</span></div>
+  <h3>RT-07.1 · NSE indices</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>286</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. Each required indices workbook has three sheets, the history depth, and a last date equal to the folder date.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article>
+<article class="card" id="rt-07-2">
+  <div class="card-meta"><span class="ref">RT-07.2</span><span class="mark fail">FAIL</span></div>
+  <h3>RT-07.2 · Spot price</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>286</span></div>
+    <div class="fact"><b>Breaches</b><span>62080</span></div>
+    <div class="fact"><b>Note</b><span>Failed. 62080 spot sheets do not match the folder date or the depth.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600">62080 rows are in the separate report. <a href="./20261031-053201/RT-07.2.html" target="_blank">Open RT-07.2</a> · <a href="./20261031-053201/RT-07.2.csv" target="_blank">Excel</a></p>
+</article>
+<article class="card" id="rt-07-3">
+  <div class="card-meta"><span class="ref">RT-07.3</span><span class="mark fail">FAIL</span></div>
+  <h3>RT-07.3 · Delivery data</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>286</span></div>
+    <div class="fact"><b>Breaches</b><span>61373</span></div>
+    <div class="fact"><b>Note</b><span>Failed. 61373 delivery sheets do not match the folder date or the depth.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600">61373 rows are in the separate report. <a href="./20261031-053201/RT-07.3.html" target="_blank">Open RT-07.3</a> · <a href="./20261031-053201/RT-07.3.csv" target="_blank">Excel</a></p>
+</article>
+<article class="card" id="rt-07-4">
+  <div class="card-meta"><span class="ref">RT-07.4</span><span class="mark pass">PASS</span></div>
+  <h3>RT-07.4 · Near-month futures</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>286</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. Every futures file in the window was opened; traded dates match; mid-month near month is strictly after the folder date; expiry evenings hold Note 1 Case 1 / 1b / 1c pack rows.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article>
+<article class="card" id="rt-07-5">
+  <div class="card-meta"><span class="ref">RT-07.5</span><span class="mark pass">PASS</span></div>
+  <h3>RT-07.5 · Earnings calendar</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>287</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. Every earnings file in the window was opened, each symbol and result date appears once, and the scout and the backtest open that scout date’s file.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article>
+<article class="card" id="rt-07-6">
+  <div class="card-meta"><span class="ref">RT-07.6</span><span class="mark pass">PASS</span></div>
+  <h3>RT-07.6 · Holidays calendar</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>1</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. Holidays inside Date 1 through Date 2 are in the frozen file, and the program does not write that file.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article>
+<article class="card" id="rt-07-7">
+  <div class="card-meta"><span class="ref">RT-07.7</span><span class="mark pass">PASS</span></div>
+  <h3>RT-07.7 · Expiry calendar</h3>
+  <div class="facts">
+    <div class="fact"><b>Scanned</b><span>15</span></div>
+    <div class="fact"><b>Breaches</b><span>0</span></div>
+    <div class="fact"><b>Note</b><span>Passed. Each month from Date 1 through Date 2 has one trading-day expiry, and the program does not write the frozen file.</span></div>
+  </div>
+  
+  <div class="lbl">Error table</div><p style="margin:0;font-weight:600;color:var(--muted)">No error rows.</p>
+</article></div></section>
+
+<section class="group" id="failure-summary" style="--gc:#fecaca">
+  <header class="group-h">
+    <div><h2><span class="gn">FS</span> · Failure Summary</h2><span class="badge fail">FAIL</span></div>
+    <a class="top" href="#top">Top ↑</a>
+  </header>
+  <div class="stack">
+    <article class="card">
+      <div class="card-meta"><span class="ref">FS</span><span class="mark fail">FAIL</span></div>
+      <h3>Failure Summary</h3>
+      <div class="facts"><div class="fact"><b>Note</b><span>One row is one reason inside one sub-section. Bugs Count is how many error rows carry that reason. The same reason in two sub-sections stays two rows. Open starts that sub-section's row report in a new window. Hover a reason for a short explanation.</span></div></div>
+      <table class="rt"><thead><tr><th>Sno</th><th>Why? / Reason</th><th>Bugs Count</th><th>RT Sub-section</th><th>Rows</th></tr></thead>
+      <tbody><tr><td class='mono'>1</td><td class='why'><span class='label'>History depth is not SCOUTING_HISTORY_TDAYS.</span><span class='tip'>History depth is not SCOUTING_HISTORY_TDAYS.</span></td><td class='mono'>62039</td><td class='mono'><a href='#rt-07-2'>RT-07.2</a></td><td class='mono'><a href='./20261031-053201/RT-07.2.html' target='_blank'>Open</a> · <a href='./20261031-053201/RT-07.2.csv' target='_blank'>Excel</a></td></tr><tr><td class='mono'>2</td><td class='why'><span class='label'>History depth is not SCOUTING_HISTORY_TDAYS.</span><span class='tip'>History depth is not SCOUTING_HISTORY_TDAYS.</span></td><td class='mono'>61332</td><td class='mono'><a href='#rt-07-3'>RT-07.3</a></td><td class='mono'><a href='./20261031-053201/RT-07.3.html' target='_blank'>Open</a> · <a href='./20261031-053201/RT-07.3.csv' target='_blank'>Excel</a></td></tr><tr><td class='mono'>3</td><td class='why'><span class='label'>Required NSE session file is absent</span><span class='tip'>Required NSE session file is absent</span></td><td class='mono'>82</td><td class='mono'><a href='#rt-07-0'>RT-07.0</a></td><td class='mono'><a href='./20261031-053201/RT-07.0.html' target='_blank'>Open</a> · <a href='./20261031-053201/RT-07.0.csv' target='_blank'>Excel</a></td></tr><tr><td class='mono'>4</td><td class='why'><span class='label'>Required NSE session file is absent</span><span class='tip'>Required NSE session file is absent</span></td><td class='mono'>41</td><td class='mono'><a href='#rt-07-2'>RT-07.2</a></td><td class='mono'><a href='./20261031-053201/RT-07.2.html' target='_blank'>Open</a> · <a href='./20261031-053201/RT-07.2.csv' target='_blank'>Excel</a></td></tr><tr><td class='mono'>5</td><td class='why'><span class='label'>Required NSE session file is absent</span><span class='tip'>Required NSE session file is absent</span></td><td class='mono'>41</td><td class='mono'><a href='#rt-07-3'>RT-07.3</a></td><td class='mono'><a href='./20261031-053201/RT-07.3.html' target='_blank'>Open</a> · <a href='./20261031-053201/RT-07.3.csv' target='_blank'>Excel</a></td></tr></tbody></table>
+    </article>
+  </div>
+</section>
+
+<footer class="page">Measured 2026-10-31 09:47 · live book 167 / ₹87,51,299.69 Soft 0 · H-SL 0 · scout v3-3.249 · settings v126 · holiday as_of 2026-10-20 · law <a href="../regression-test.md" target="_blank" rel="noopener noreferrer">ts/regression-test.md</a> · Telegram held (DISABLE TELEGRAM)</footer>
+<dialog id="failure-summary-dialog" hidden>
+  <div class="pop-h">
+    <h2>Failure Summary</h2>
+    <button type="button" class="x" id="close-fs">Close</button>
+  </div>
+  <div class="pop-b" id="failure-summary-dialog-body"></div>
+</dialog>
+<dialog id="regression-scope" hidden>
+  <div class="pop-h">
+    <h2>Regression Scope</h2>
+    <button type="button" class="x" id="close-scope">Close</button>
+  </div>
+  <div class="pop-b">
+    <p>Instructions for the run. Date 1 is <code>BACKTEST_SIM_START</code>. Date 2 is <code>BACKTEST_SIM_END</code>. Both dates are inside the scope. RT-06 ignores a frozen holiday before Date 1 or after Date 2. RT-07 ignores a day folder or a calendar row before Date 1 or after Date 2. G1 through G5 still read every filled trade inside the window.</p>
+    <table class="rt">
+      <thead><tr><th>Goal</th><th>Name</th><th>Scope</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">G1</td><td>Entry Price</td><td><ul><li>Should check the live filled book whose entry date is inside Date 1 through Date 2.</li><li>Should confirm every entry fill sits inside that entry day's futures low and high.</li></ul></td></tr>
+        <tr><td class="mono">G2</td><td>Exit Price</td><td><ul><li>Should check every exit inside Date 1 through Date 2: soft stop, target, hard stop, time stop, cut-loss, and expiry.</li><li>Should confirm the exit price sits inside that exit day's futures low and high.</li></ul></td></tr>
+        <tr><td class="mono">G3</td><td>Live≡BT Hardcode</td><td><ul><li>Should pass Live≡BT pillars 1 and 2. Should read executable scout, backtest, exit, and execution.</li><li>Should read the leave, reopen, and hard-stop skip lists.</li><li>Should list a stock name, a month brick, or a script name that can change a fill.</li><li>Should ignore comments and shared class rules.</li></ul></td></tr>
+        <tr><td class="mono">G4</td><td>Expiry Hold</td><td><ul><li>Should check the exit engine and the backtest exit path for fills inside Date 1 through Date 2.</li><li>Should confirm no filled trade exits after that trade's own futures expiry.</li></ul></td></tr>
+        <tr><td class="mono">G5</td><td>Holiday Exit</td><td><ul><li>Should check every filled trade inside Date 1 through Date 2.</li><li>Should confirm the entry date and the exit date are not an NSE holiday or a weekend.</li></ul></td></tr>
+        <tr><td class="mono">G6</td><td>Holiday Datapack</td><td><ul><li>Should read the local holiday-skip function. Should not call NSE. Should not write a pack.</li><li>Should not use a fixed pair of dates.</li><li>Should pick one frozen holiday inside Date 1 through Date 2 and confirm it returns skip.</li><li>Should pick one NSE trading day inside that window and confirm it returns proceed.</li><li>Should print those two dates on the measured page.</li><li>Should then check every frozen holiday inside Date 1 through Date 2.</li><li>Should fail when <code>data/YYYY-MM-DD/</code> or <code>data/YYYY-MM-DD/scouting/</code> exists on one of those holidays.</li><li>Should ignore a frozen holiday before Date 1 or after Date 2.</li><li>A weekend that is not in the frozen holiday file is outside this case.</li><li>Should not walk every trading day. That walk belongs to G5.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.0</td><td>Common validations (Data Pack Programs)</td><td><ul><li>Should cover Date 1 through Date 2, inclusive.</li><li>Should confirm every NSE session in that window has <code>data/YYYY-MM-DD/scouting/</code>.</li><li>Should confirm each of those folders has the indices, spot, futures, and delivery files.</li><li>Should confirm the four shared files are present, including the account ledger.</li><li>Data packs only. Should ignore a day folder or a calendar row before Date 1 or after Date 2. Should not mark that as a fail.</li><li>Should not read a program. This child is file presence only.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.1</td><td>NSE indices</td><td><ul><li>Should read <code>py-nse-indices-closing-data.py</code>. Should not run it.</li><li>Should cover sheets <code>NIFTY_50</code>, <code>BANK_NIFTY</code>, and <code>MIDCAP_NIFTY</code>.</li><li>Should confirm the history depth, and that the last date equals the folder date.</li><li>Should confirm the executable default source is NSE.</li><li>Should read the program for a hardcode. The three index names are the contract.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.2</td><td>Spot price</td><td><ul><li>Should read <code>py-nse-spot-data.py</code>. Should not run it.</li><li>Should cover one sheet per cash ticker, the history depth, and a last date equal to the folder date.</li><li>Should confirm the source is the NSE cash bhavcopy, and that tickers come from that day's futures file.</li><li>Should fail a fixed ticker list that replaces the futures-file universe.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.3</td><td>Delivery data</td><td><ul><li>Should read <code>py-nse-delivery-data.py</code>. Should not run it.</li><li>Should cover one <code>Delivery</code> sheet, history-depth rows per ticker, and a last date equal to the folder date.</li><li>Should confirm delivery quantity and delivery percent come from the NSE cash bhavcopy.</li><li>Should use the same hardcode bar as RT-07.2.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.4</td><td>Near-month futures</td><td><ul><li>Should read <code>py-nse-futures-single-day.py</code>. Should not run it.</li><li>Should open every <code>NSE_Near_Month_Futures_Single_Day.xlsx</code> from Date 1 through Date 2. Should not skip a folder or a file.</li><li>Should confirm the traded date equals the folder date.</li><li>Should confirm mid-month has one row per underlying and a near month strictly after the folder date.</li><li>Should confirm Note 1 Case <b>1</b> (dying+next): the file may keep both rows and must have a next-series row with expiry strictly after the folder date.</li><li>Should confirm Note 1 Case <b>1b</b> (dying-only): one row with expiry equal to the folder date and no next row is allowed.</li><li>Should confirm Note 1 Case <b>1c</b> (next-only): one next-series row is allowed. Should not invent a dying row. Should not require two rows.</li><li>Should also read scout and backtest for the next-series pick / 1b skip. Should not run them.</li><li>Should read the futures program for a hardcode.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.5</td><td>Earnings calendar</td><td><ul><li>Should read <code>py-nse-earnings-calendar.py</code>. Should not run it. Should not rewrite the workbook.</li><li>Should check <code>data/shared/earnings-calendar-history.xlsx</code> only for result dates inside Date 1 through Date 2.</li><li>Should confirm one row per symbol and result date inside that window. Should ignore rows outside it.</li><li>Should confirm the fetch target is the NSE event calendar, and that the writer drops a duplicate Symbol + Result Date.</li><li>Should read the program for a hardcode.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.6</td><td>Holidays calendar</td><td><ul><li>Should read <code>py-nse-trading-holidays-refresh.py</code>. Should not run it.</li><li>Should confirm the frozen file’s dates span Date 1 through Date 2.</li><li>Should not call NSE to invent a missing holiday. Should ignore holiday rows outside that window.</li><li>Should confirm the fetch target is the NSE holiday master, and that the writer leaves the frozen file untouched.</li><li>Should read the program for a hardcode.</li></ul></td></tr>
+        <tr><td class="mono">RT-07.7</td><td>Expiry calendar</td><td><ul><li>Should read <code>py-nse-monthly-expiry-refresh.py</code>. Should not run it.</li><li>Should cover one trading-day expiry for each month touched by Date 1 through Date 2. Should ignore months outside that window.</li><li>Should confirm that expiry is not a frozen holiday.</li><li>Should confirm the writer leaves the frozen file untouched.</li><li>Should fail a ticker name or one forced expiry date in executable code.</li></ul></td></tr>
+      </tbody>
+    </table>
+  </div>
+</dialog>
+<dialog id="regression-prereq" hidden>
+  <div class="pop-h">
+    <h2>Pre-requisite</h2>
+    <button type="button" class="x" id="close-prereq">Close</button>
+  </div>
+  <div class="pop-b">
+    <ul>
+      <li>A Full backtest with <b>BT_FAST_REPORT=N</b> must already have been run.</li>
+      <li>This regression does not run a backtest. It checks the book that Full backtest wrote.</li>
+      <li>That book is the live trades file and the futures packs for those trade dates, read against the frozen holiday file.</li>
+      <li>If that Full backtest has not been run, or the trades file is not the live book, do not start.</li>
+      <li><b>GO REGRESSION</b> runs RT-01 through RT-07.7. <b>GO REGRESSION RT-06</b> runs that case only. <b>GO REGRESSION RT-01 to RT-04</b> runs that range and stops. <b>GO REGRESSION RT-07</b> runs RT-07.0 through RT-07.7.</li>
+      <li>RT-07 reads the packs and programs already on disk and does not download.</li>
+    </ul>
+  </div>
+</dialog>
+<script>
+(function(){
+  function bind(openId, boxId, closeId){
+    var open = document.getElementById(openId);
+    var box = document.getElementById(boxId);
+    var close = document.getElementById(closeId);
+    if (!open || !box) return;
+    function shut(){ box.close(); box.setAttribute("hidden", ""); }
+    open.addEventListener("click", function(e){
+      e.preventDefault();
+      box.removeAttribute("hidden");
+      box.showModal();
+    });
+    if (close) close.addEventListener("click", shut);
+    box.addEventListener("close", function(){ box.setAttribute("hidden", ""); });
+    box.addEventListener("click", function(e){ if (e.target === box) shut(); });
+  }
+  function bindFailureSummary(){
+    var open = document.getElementById("open-fs");
+    var box = document.getElementById("failure-summary-dialog");
+    var close = document.getElementById("close-fs");
+    var body = document.getElementById("failure-summary-dialog-body");
+    var src = document.querySelector("#failure-summary .card");
+    if (!open || !box || !body || !src) return;
+    var rtTitle = {
+      "RT-01": "Entry fill ∈ entry-day FUT OHLC",
+      "RT-02": "Exit fill ∈ exit-day FUT OHLC",
+      "RT-03": "Named-seat lists idle",
+      "RT-04": "ExitDate ≤ FutExpiry",
+      "RT-05": "No entry or exit on holiday or weekend",
+      "RT-06": "Local skip · no NSE · no holiday folder",
+      "RT-07.0": "Common validations (Data Pack Programs)",
+      "RT-07.1": "NSE indices",
+      "RT-07.2": "Spot price",
+      "RT-07.3": "Delivery data",
+      "RT-07.4": "Near-month futures",
+      "RT-07.5": "Earnings calendar",
+      "RT-07.6": "Holidays calendar",
+      "RT-07.7": "Expiry calendar"
+    };
+    function paintPopupSubsections(root){
+      var cells = root.querySelectorAll("table.rt tbody tr td:nth-child(4)");
+      for (var i = 0; i < cells.length; i++){
+        var cell = cells[i];
+        var id = (cell.textContent || "").replace(/\s+/g, " ").trim();
+        var title = rtTitle[id];
+        cell.textContent = title ? (id + " (" + title + ")") : id;
+      }
+    }
+    function shut(){ box.close(); box.setAttribute("hidden", ""); }
+    open.addEventListener("click", function(e){
+      e.preventDefault();
+      body.innerHTML = "";
+      var clone = src.cloneNode(true);
+      paintPopupSubsections(clone);
+      body.appendChild(clone);
+      box.removeAttribute("hidden");
+      box.showModal();
+    });
+    if (close) close.addEventListener("click", shut);
+    box.addEventListener("close", function(){ box.setAttribute("hidden", ""); });
+    box.addEventListener("click", function(e){ if (e.target === box) shut(); });
+  }
+  bind("open-scope", "regression-scope", "close-scope");
+  bind("open-prereq", "regression-prereq", "close-prereq");
+  bindFailureSummary();
+})();
+</script>
+</div>
+</body>
+</html>
