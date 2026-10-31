@@ -298,7 +298,14 @@ table.rt th{
 }
 table.rt td.mono{font-family:ui-monospace,Consolas,monospace; font-weight:700; white-space:nowrap}
 table.rt tr.bad td{background:#fee2e2}
-#failure-summary .card,
+#failure-summary .card{
+  overflow-x:auto;
+  overflow-y:visible;
+  max-height:none;
+  -webkit-overflow-scrolling:touch;
+  overscroll-behavior-x:contain;
+  max-width:100%;
+}
 #failure-summary-dialog .card{overflow:visible;max-height:none}
 #failure-summary td.why,
 #failure-summary-dialog td.why{position:relative;cursor:help}
@@ -362,6 +369,11 @@ footer.page{margin-top:28px; color:var(--muted); font-size:.85rem}
   }
   #failure-summary-dialog table.rt,
   #regression-scope table.rt{font-size:12px}
+  #failure-summary .card{
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  #failure-summary table.rt{font-size:12px}
 }
 </style>
 </head>
