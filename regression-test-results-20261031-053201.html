@@ -20,9 +20,10 @@
   --pass:#c8ff3d; --fail:#ff5a36; --blocked:#ffd23f; --notrun:#e5e7eb;
 }
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:clip;max-width:100%}
 body{
   margin:0; font-family:var(--font); color:var(--ink); line-height:1.45; min-height:100vh;
+  overflow-x:clip; max-width:100%;
   background-color:var(--bg);
   background-image:
     radial-gradient(ellipse 80% 50% at 0% 0%, rgba(200,255,61,.42), transparent 55%),
@@ -91,27 +92,50 @@ h1 .verdict.stop{color:#dc2626}
 #regression-scope,
 #regression-prereq,
 #failure-summary-dialog{
-  border:3px solid var(--ink); border-radius:18px; padding:0; max-width:760px; width:calc(100% - 32px);
+  border:3px solid var(--ink); border-radius:18px; padding:0;
+  box-sizing:border-box;
+  width:min(980px, calc(100vw - 16px));
+  max-width:calc(100vw - 16px);
+  max-height:calc(100dvh - 16px);
+  height:min(920px, calc(100dvh - 16px));
+  margin:0;
+  overflow:hidden;
   box-shadow:8px 8px 0 var(--ink); background:#fff;
 }
-#regression-prereq{max-width:980px}
 #regression-scope:not([open]),
+#regression-prereq:not([open]),
 #failure-summary-dialog:not([open]){display:none !important}
 #regression-scope[open],
-#failure-summary-dialog[open]{display:flex !important; flex-direction:column}
-#regression-scope,
-#failure-summary-dialog{
-  width:calc(100vw - 12px); max-width:none;
-  height:calc(100vh - 12px); max-height:calc(100vh - 12px);
-  margin:6px auto; overflow:hidden;
+#regression-prereq[open],
+#failure-summary-dialog[open]{
+  display:flex !important;
+  flex-direction:column;
+  position:fixed;
+  left:50%;
+  top:50%;
+  right:auto;
+  bottom:auto;
+  transform:translate(-50%, -50%);
+  z-index:1000;
+}
+body.rt-dialog-open{
+  overflow:hidden !important;
+  position:fixed;
+  width:100%;
+  left:0;
+  right:0;
 }
 #regression-scope .pop-h,
+#regression-prereq .pop-h,
 #failure-summary-dialog .pop-h{padding:8px 14px; flex:0 0 auto}
 #regression-scope .pop-b,
+#regression-prereq .pop-b,
 #failure-summary-dialog .pop-b{
   flex:1 1 auto; min-height:0;
-  overflow:auto; overscroll-behavior:contain;
+  overflow:auto; overflow-x:auto; overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;
   padding:8px 12px 16px;
+  max-width:100%;
 }
 #regression-scope th,
 #regression-scope td,
@@ -320,6 +344,24 @@ footer.page{margin-top:28px; color:var(--muted); font-size:.85rem}
     line-height:1.55;
   }
   .tl{flex:0 0 auto; margin-left:auto}
+  #regression-scope,
+  #regression-prereq,
+  #failure-summary-dialog{
+    width:calc(100vw - 12px);
+    max-width:calc(100vw - 12px);
+    height:calc(100dvh - 12px);
+    max-height:calc(100dvh - 12px);
+    border-radius:14px;
+  }
+  #regression-scope th,
+  #regression-scope td,
+  #regression-scope li,
+  #failure-summary-dialog th,
+  #failure-summary-dialog td{
+    white-space:normal;
+  }
+  #failure-summary-dialog table.rt,
+  #regression-scope table.rt{font-size:12px}
 }
 </style>
 </head>
@@ -648,20 +690,45 @@ footer.page{margin-top:28px; color:var(--muted); font-size:.85rem}
 </dialog>
 <script>
 (function(){
+  var scrollY = 0;
+  function lockPage(){
+    scrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.classList.add("rt-dialog-open");
+    document.body.style.top = (-scrollY) + "px";
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+  }
+  function unlockPage(){
+    document.body.classList.remove("rt-dialog-open");
+    document.body.style.top = "";
+    window.scrollTo(0, scrollY);
+    document.documentElement.scrollLeft = 0;
+    document.body.scrollLeft = 0;
+  }
+  function openBox(box){
+    box.removeAttribute("hidden");
+    lockPage();
+    if (typeof box.showModal === "function") box.showModal();
+    else box.setAttribute("open", "");
+  }
+  function shutBox(box){
+    if (typeof box.close === "function") box.close();
+    box.removeAttribute("open");
+    box.setAttribute("hidden", "");
+    unlockPage();
+  }
   function bind(openId, boxId, closeId){
     var open = document.getElementById(openId);
     var box = document.getElementById(boxId);
     var close = document.getElementById(closeId);
     if (!open || !box) return;
-    function shut(){ box.close(); box.setAttribute("hidden", ""); }
     open.addEventListener("click", function(e){
       e.preventDefault();
-      box.removeAttribute("hidden");
-      box.showModal();
+      openBox(box);
     });
-    if (close) close.addEventListener("click", shut);
-    box.addEventListener("close", function(){ box.setAttribute("hidden", ""); });
-    box.addEventListener("click", function(e){ if (e.target === box) shut(); });
+    if (close) close.addEventListener("click", function(){ shutBox(box); });
+    box.addEventListener("close", function(){ unlockPage(); box.setAttribute("hidden", ""); });
+    box.addEventListener("click", function(e){ if (e.target === box) shutBox(box); });
   }
   function bindFailureSummary(){
     var open = document.getElementById("open-fs");
@@ -695,19 +762,17 @@ footer.page{margin-top:28px; color:var(--muted); font-size:.85rem}
         cell.textContent = title ? (id + " (" + title + ")") : id;
       }
     }
-    function shut(){ box.close(); box.setAttribute("hidden", ""); }
     open.addEventListener("click", function(e){
       e.preventDefault();
       body.innerHTML = "";
       var clone = src.cloneNode(true);
       paintPopupSubsections(clone);
       body.appendChild(clone);
-      box.removeAttribute("hidden");
-      box.showModal();
+      openBox(box);
     });
-    if (close) close.addEventListener("click", shut);
-    box.addEventListener("close", function(){ box.setAttribute("hidden", ""); });
-    box.addEventListener("click", function(e){ if (e.target === box) shut(); });
+    if (close) close.addEventListener("click", function(){ shutBox(box); });
+    box.addEventListener("close", function(){ unlockPage(); box.setAttribute("hidden", ""); });
+    box.addEventListener("click", function(e){ if (e.target === box) shutBox(box); });
   }
   bind("open-scope", "regression-scope", "close-scope");
   bind("open-prereq", "regression-prereq", "close-prereq");
